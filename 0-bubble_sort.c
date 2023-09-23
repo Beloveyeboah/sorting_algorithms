@@ -6,7 +6,7 @@ void _swap(int *a, int *p);
 /**
  * _swap - swaps the index of two values
  * @a: an array
- * @b: an array
+ * @p: an array
  * Return: anything
  */
 
@@ -19,7 +19,6 @@ void _swap(int *a, int *p)
 	*p = swap;
 }
 
-	
 /**
  * bubble_sort - sorts sorts an array of integers
  * @array: the name of the array
