@@ -28,6 +28,7 @@ void _swap(int *a, int *p)
 void bubble_sort(int *array, size_t size)
 {
 	size_t j, i = 0;
+	bool yes;
 
 	if (array == NULL || size < 2)
 	{
@@ -36,13 +37,17 @@ void bubble_sort(int *array, size_t size)
 
 	for (i = 0; i < size - 1; i++)
 	{
+		yes = false;
 		for (j = 0; j < size - i - 1; j++)
 		{
 			if (array[j] > array[j + 1])
 			{
 				_swap(&array[j], &array[j + 1]);
+				yes = true;
 				print_array(array, size);
 			}
 		}
+		if (yes == false)
+			break;
 	}
 }
