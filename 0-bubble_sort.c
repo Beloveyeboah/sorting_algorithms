@@ -1,53 +1,36 @@
 #include "sort.h"
 
-void _swap(int *a, int *p);
-
-
 /**
- * _swap - swaps the index of two values
- * @a: an array
- * @p: an array
- * Return: anything
+ * bubble_sort - function that sort's array using buble sort algorithm
+ * @array: array to sort
+ * @size: size of array
  */
 
-void _swap(int *a, int *p)
-{
-	int swap;
-
-	swap = *a;
-	*a = *p;
-	*p = swap;
-}
-
-/**
- * bubble_sort - sorts sorts an array of integers
- * @array: the name of the array
- * @size: the lenght of the array
- * Return: anything
- */
 void bubble_sort(int *array, size_t size)
 {
-	size_t j, i = 0;
-	bool yes;
+	size_t temp, i, j;
+	int flag;
 
 	if (array == NULL || size < 2)
-	{
 		return;
-	}
 
 	for (i = 0; i < size - 1; i++)
 	{
-		yes = false;
-		for (j = 0; j < size - i - 1; j++)
+		flag = 0;
+		for (j = 0; j < size - 1 - i; j++)
 		{
 			if (array[j] > array[j + 1])
 			{
-				_swap(&array[j], &array[j + 1]);
-				yes = true;
+				temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+				flag = 1;
+
 				print_array(array, size);
 			}
 		}
-		if (yes == false)
+		if (flag == 0)
 			break;
+
 	}
 }
