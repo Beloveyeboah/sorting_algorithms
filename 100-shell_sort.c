@@ -11,25 +11,30 @@ void swap(int *a, int *b);
 void shell_sort(int *array, size_t size)
 {
 	size_t gap, i, j;
+	int flag = 1;
 
 	if (array == NULL || size < 2)
 		return;
-
-	for (gap = 1; gap < (size / 3);)
-		gap = gap * 3 + 1;
-
-	for (; gap >= 1; gap /= 3)
+	while (flag == 1)
 	{
-		for (i = gap; i < size; i++)
+		flag = 0;
+		for (gap = 1; gap < (size / 3);)
+			gap = gap * 3 + 1;
+		for (; gap >= 1; gap /= 3)
 		{
-			j = i;
-			while (j >= gap && array[j - gap] > array[j])
+			for (i = gap; i < size; i++)
 			{
-				swap(array + j, array + (j - gap));
-				j -= gap;
+				j = i;
+				while (j >= gap && array[j - gap] > array[j])
+				{
+					swap(array + j, array + (j - gap));
+					j -= gap;
+				}
 			}
+			print_array(array, size);
 		}
-		print_array(array, size);
+		if (flag == 0)
+			break;
 	}
 }
 
