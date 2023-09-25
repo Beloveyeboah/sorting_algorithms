@@ -46,23 +46,26 @@ void radix_count_sort(int *array, size_t size, int pos, int *buf)
 {
 	int count[10] = {0};
 	size_t i;
+	int flag = 1;
 
-
-	for (i = 0; i < size; i++)
-		++count[(array[i] / pos) % 10];
-
-	for (i = 0; i < 10; i++)
-		count[i] += count[i - 1]; /* sums the counts per value pos */
-
-	/* gets the exact index pos of sorted values based on count array */
-	for (i = size - 1; (int)i >= 0; i--)
+	while (flag == 1)
 	{
-		buf[--count[(array[i] / pos) % 10]] = array[i];
-		/*decrement count value by 1 to get exact position of value*/
-	}
+		flag = 0;
+		for (i = 0; i < size; i++)
+			++count[(array[i] / pos) % 10];
 
-	for (i = 0; i < size; i++)
-		array[i] = buf[i];
+		for (i = 0; i < 10; i++)
+			count[i] += count[i - 1];
+		for (i = size - 1; (int)i >= 0; i--)
+		{
+			buf[--count[(array[i] / pos) % 10]] = array[i];
+		}
+
+		for (i = 0; i < size; i++)
+			array[i] = buf[i];
+		if (flag == 0)
+			break;
+	}
 }
 
 
