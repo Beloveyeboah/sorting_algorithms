@@ -61,8 +61,6 @@ int lomuto_partition(int *array, size_t size, int left, int right)
 	return (above);
 }
 
-
-
 /**
  * swap - swaps the index of the elements
  * @a: the previous index
@@ -89,8 +87,15 @@ void swap(int *a, int *b)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (array == NULL || size == 0)
-		return;
+	int flag = 1;
 
-	quick_lomuto_wrapper(array, size, 0, size - 1);
+	if (array == NULL || size < 2)
+		return;
+	while (flag == 1)
+	{
+		flag = 0;
+		quick_lomuto_wrapper(array, size, 0, size - 1);
+		if (flag == 0)
+			break;
+	}
 }
