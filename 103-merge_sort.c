@@ -11,18 +11,22 @@ void merge(int *array, int *buf, size_t l_idx, size_t mid, size_t r_idx);
 
 void merge_sort(int *array, size_t size)
 {
+	int flag = 1;
 	int *buf;
 
 	if (array == NULL || size < 2)
 		return;
-
-	buf = malloc(sizeof(int) * size);
-	if (buf == NULL)
-		return;
-
-	sorted_array(array, buf, 0, size);
-
-	free(buf);
+	while (flag == 1)
+	{
+		flag = 0;
+		buf = malloc(sizeof(int) * size);
+		if (buf == NULL)
+			return;
+		sorted_array(array, buf, 0, size);
+		free(buf);
+		if (flag == 0)
+			break;
+	}
 }
 
 
