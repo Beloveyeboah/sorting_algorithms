@@ -14,19 +14,23 @@ void swap(int *a, int *b);
 
 void heap_sort(int *array, size_t size)
 {
-	int i;
+	int i, flag = 1;
 
 	if (array == NULL || size < 2)
 		return;
-
-	for (i = (size / 2) - 1; i >= 0; i--)
-		max_heapify(array, size, size, i);
-
-	for (i = size - 1; i > 0; i--)
+	while (flag == 1)
 	{
-		swap(array, array + i);
-		print_array(array, size);
-		max_heapify(array, size, i, 0);
+		flag = 0;
+		for (i = (size / 2) - 1; i >= 0; i--)
+			max_heapify(array, size, size, i);
+		for (i = size - 1; i > 0; i--)
+		{
+			swap(array, array + i);
+			print_array(array, size);
+			max_heapify(array, size, i, 0);
+		}
+		if (flag == 0)
+			break;
 	}
 }
 
