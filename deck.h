@@ -1,7 +1,9 @@
 #ifndef DECK_H
 
 #define DECK_H
+#include <stddef.h>
 
+#include <stdio.h>
 
 
 #include <stdlib.h>
