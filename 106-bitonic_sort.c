@@ -16,14 +16,19 @@ void bitonic_merge(int *array,
  */
 
 void bitonic_sort(int *array, size_t size)
-
 {
+	int flag = 1;
 
-	if (array == NULL)
 
+	if (array == NULL || size < 2)
 		return;
-
-	sort_bitonic(array, 0, size, size, 1);
+	while (flag == 1)
+	{
+		flag = 0;
+		sort_bitonic(array, 0, size, size, 1);
+		if (flag == 0)
+			break;
+	}
 
 }
 
